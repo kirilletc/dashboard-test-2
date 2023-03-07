@@ -21,25 +21,26 @@
     <div class="dashboard-container">
         <div class="dashboard-container__controls">
             <button class="create-button">Create new</button>
-            <div class="dashboard-container__controls__row">
+            <div class="dashboard-container__controls__row" @click="displayEven">
                 <div class="icon1"></div>
                 <div class="dashboard-container__controls__row__right">
-                    <div class="controls-title">Even rows of data</div>
+                    <div class="controls-title">Display rows 2,4,6 etc</div>
+                   
                     <div class="controls-subtitle">Display rows 2,4,6 etc</div>
                 </div>
             </div>
-            <div class="dashboard-container__controls__row">
+            <div class="dashboard-container__controls__row" @click="displayOdd">
                 <div class="icon2"></div>
                 <div class="dashboard-container__controls__row__right">
-                    <div class="controls-title">Even rows of data</div>
-                    <div class="controls-subtitle">Display rows 2,4,6 etc</div>
+                    <div class="controls-title">Display rows 1,3,5 etc</div>
+                    <div class="controls-subtitle">Display rows 1,3,5 etc</div>
                 </div>
             </div>
-            <div class="dashboard-container__controls__row">
+            <div class="dashboard-container__controls__row" @click="displayAll">
                 <div class="icon3"></div>
                 <div class="dashboard-container__controls__row__right">
-                    <div class="controls-title">Even rows of data</div>
-                    <div class="controls-subtitle">Display rows 2,4,6 etc</div>
+                    <div class="controls-title">Display all</div>
+                    <div class="controls-subtitle">Display all</div>
                 </div>
             </div>
         </div>
@@ -61,8 +62,10 @@
                     <div class="table-dashboard__row__col">Summary4</div>
                     <div class="table-dashboard__row__col">Summary5</div>
                 </div>
-                <div class="table-dashboard__row">
-                    <div class="table-dashboard__row__col">Data</div>
+            </div>
+            <div class="table-dashboard-1">
+                <div class="table-dashboard__row standart-row">
+                    <div class="table-dashboard__row__col">Data-1</div>
                     <div class="table-dashboard__row__col">186</div>
                     <div class="table-dashboard__row__col">186</div>
                     <div class="table-dashboard__row__col">92</div>
@@ -70,7 +73,7 @@
                     <div class="table-dashboard__row__col">1</div>
                 </div>
                 <div class="table-dashboard__row">
-                    <div class="table-dashboard__row__col">Data</div>
+                    <div class="table-dashboard__row__col">Data-2</div>
                     <div class="table-dashboard__row__col">186</div>
                     <div class="table-dashboard__row__col">186</div>
                     <div class="table-dashboard__row__col">92</div>
@@ -78,7 +81,7 @@
                     <div class="table-dashboard__row__col">1</div>
                 </div>
                 <div class="table-dashboard__row">
-                    <div class="table-dashboard__row__col">Data</div>
+                    <div class="table-dashboard__row__col">Data-3</div>
                     <div class="table-dashboard__row__col">186</div>
                     <div class="table-dashboard__row__col">186</div>
                     <div class="table-dashboard__row__col">92</div>
@@ -86,13 +89,15 @@
                     <div class="table-dashboard__row__col">1</div>
                 </div>
                 <div class="table-dashboard__row">
-                    <div class="table-dashboard__row__col">Data</div>
+                    <div class="table-dashboard__row__col">Data-4</div>
                     <div class="table-dashboard__row__col">186</div>
                     <div class="table-dashboard__row__col">186</div>
                     <div class="table-dashboard__row__col">92</div>
                     <div class="table-dashboard__row__col">8</div>
                     <div class="table-dashboard__row__col">1</div>
                 </div>
+            </div>
+            <div class="table-dashboard">
                 <div class="table-dashboard__row">
                     <div class="table-dashboard__row__col"><div class="search-field">Search..</div></div>
                     <div class="table-dashboard__row__col"><div class="search1"></div></div>
@@ -108,6 +113,21 @@
 </div>
 </div>
 </template>
+<script>
+    export default {
+      methods: {
+        displayEven() {
+          document.querySelectorAll(".table-dashboard-1 .table-dashboard__row:nth-child(odd)").forEach((e) => {e.style.display = "none"});
+        },
+        displayOdd() {
+          document.querySelectorAll(".table-dashboard-1 .table-dashboard__row:nth-child(even)").forEach((i) => {i.style.display = "none"});
+        },
+        displayAll() {
+          document.querySelectorAll(".table-dashboard-1 .table-dashboard__row").forEach((k) => {k.style.display = "flex"});
+        }
+      }
+    };
+</script>
 <style lang="css">
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
@@ -314,6 +334,7 @@ body {
     height: 56px;
 /*    border: 1px solid gray;*/
     padding: 5px 10px;
+    cursor: pointer;
 }
 
 .icon1 {
@@ -448,6 +469,17 @@ body {
     align-items: center;
 /*    border: 1px solid red;*/
     width: 935px;
+}
+
+.table-dashboard__row:nth-child(1).standart-row {
+    color: red;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.15px;
+    color: rgba(0, 0, 0, 0.87);
 }
 
 .table-dashboard__row {
