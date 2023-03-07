@@ -63,9 +63,10 @@
                     <div class="table-dashboard__row__col">Summary5</div>
                 </div>
             </div>
+            <div class="item angled-bg" id="charItem" data-searchable>
             <div class="table-dashboard-1">
                 <div class="table-dashboard__row standart-row">
-                    <div class="table-dashboard__row__col">Data-1</div>
+                    <div class="table-dashboard__row__col">1</div>
                     <div class="table-dashboard__row__col">186</div>
                     <div class="table-dashboard__row__col">186</div>
                     <div class="table-dashboard__row__col">92</div>
@@ -73,7 +74,7 @@
                     <div class="table-dashboard__row__col">1</div>
                 </div>
                 <div class="table-dashboard__row">
-                    <div class="table-dashboard__row__col">Data-2</div>
+                    <div class="table-dashboard__row__col">2</div>
                     <div class="table-dashboard__row__col">186</div>
                     <div class="table-dashboard__row__col">186</div>
                     <div class="table-dashboard__row__col">92</div>
@@ -81,7 +82,7 @@
                     <div class="table-dashboard__row__col">1</div>
                 </div>
                 <div class="table-dashboard__row">
-                    <div class="table-dashboard__row__col">Data-3</div>
+                    <div class="table-dashboard__row__col">3</div>
                     <div class="table-dashboard__row__col">186</div>
                     <div class="table-dashboard__row__col">186</div>
                     <div class="table-dashboard__row__col">92</div>
@@ -89,7 +90,7 @@
                     <div class="table-dashboard__row__col">1</div>
                 </div>
                 <div class="table-dashboard__row">
-                    <div class="table-dashboard__row__col">Data-4</div>
+                    <div class="table-dashboard__row__col">4</div>
                     <div class="table-dashboard__row__col">186</div>
                     <div class="table-dashboard__row__col">186</div>
                     <div class="table-dashboard__row__col">92</div>
@@ -97,9 +98,10 @@
                     <div class="table-dashboard__row__col">1</div>
                 </div>
             </div>
+            </div>
             <div class="table-dashboard">
                 <div class="table-dashboard__row">
-                    <div class="table-dashboard__row__col"><div class="search-field">Search..</div></div>
+                    <div class="table-dashboard__row__col"><input type=search data-search id="search" autocomplete="off"></div>
                     <div class="table-dashboard__row__col"><div class="search1"></div></div>
                     <div class="table-dashboard__row__col"><div class="search2"></div></div>
                     <div class="table-dashboard__row__col"><div class="search3"></div></div>
@@ -115,12 +117,27 @@
 </template>
 <script>
     export default {
+        mounted() {
+        document.querySelector('[data-search]').addEventListener('keyup',filter)
+        function filter(){
+          var term = document.querySelector('[data-search]').value
+          var tag = document.querySelectorAll('[data-searchable] .table-dashboard-1 .table-dashboard__row')
+          let i = 0;
+          for (i=0;i<tag.length;i++){
+            if (tag[i].querySelector('.table-dashboard__row__col:nth-child(1)').innerHTML.indexOf(term) !== -1){
+              tag[i].style.display = 'flex'
+            } else {
+              tag[i].style.display = 'none'
+            }
+          }
+        }
+    },
       methods: {
         displayEven() {
           document.querySelectorAll(".table-dashboard-1 .table-dashboard__row:nth-child(odd)").forEach((e) => {e.style.display = "none"});
         },
         displayOdd() {
-          document.querySelectorAll(".table-dashboard-1 .table-dashboard__row:nth-child(even)").forEach((i) => {i.style.display = "none"});
+          document.querySelectorAll(".table-dashboard-1 .table-dashboard__row:nth-child(even)").forEach((j) => {j.style.display = "none"});
         },
         displayAll() {
           document.querySelectorAll(".table-dashboard-1 .table-dashboard__row").forEach((k) => {k.style.display = "flex"});
